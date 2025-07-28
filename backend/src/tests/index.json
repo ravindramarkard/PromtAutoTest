@@ -1,0 +1,67 @@
+{
+  "tests": [
+    {
+      "testId": "0c1663e6-6541-4406-bf38-6c9958a4aaee",
+      "promptId": "819f83b8-9026-49c8-a816-f1f4abc9022f",
+      "testName": "bing-search-tests",
+      "files": [
+        {
+          "type": "playwright-ui",
+          "name": "bing-search-tests-0c1663e6-6541-4406-bf38-6c9958a4aaee.spec.js",
+          "path": "/Users/rajbansal/Desktop/hustle/auto-test/backend/src/tests/playwright/bing-search-tests-0c1663e6-6541-4406-bf38-6c9958a4aaee.spec.js",
+          "content": "// Tags: smoke, ui, search\n// Tags: smoke, ui, search\nconst { test, expect } = require('@playwright/test');\nconst { allure } = require('allure-playwright');\nconst { SelfHealingLocators } = require('../support/selfHealingLocators');\nconst { AntiDetection } = require('../support/antiDetection');\ntest.describe('Bing Search Tests', () => {\n  const baseUrl = process.env.BASE_URL || 'https://www.bing.com';\n  const timeout = parseInt(process.env.TIMEOUT) || 30000;\n  test('should search for Google and verify results', async ({ browser }) => {\n    const context = await AntiDetection.createStealthContext(browser);\n    const page = await context.newPage();\n    const selfHealing = new SelfHealingLocators(page);\n    try {\n      await allure.step('Navigate to Bing', async () => {\n        await AntiDetection.navigateWithDetection(page, baseUrl);\n        await page.waitForLoadState('networkidle');\n      });\n      await allure.step('Handle any cookie consent or overlays', async () => {\n        await selfHealing.handleCommonOverlays();\n        await AntiDetection.humanLikeDelay(1000, 2000);\n      });\n      await allure.step('Perform search for Google', async () => {\n        const searchInput = await selfHealing.findSearchInput();\n        await AntiDetection.humanLikeFill(searchInput, 'google');\n        await AntiDetection.humanLikeDelay(500, 1500);\n        await page.keyboard.press('Enter');\n      });\n      await allure.step('Verify search results', async () => {\n        await page.waitForLoadState('networkidle');\n        await page.waitForSelector('h1', { timeout });\n        const title = await page.title();\n        expect(title.toLowerCase()).toContain('google');\n      });\n    } catch (error) {\n      await allure.attachment('Error Screenshot', await page.screenshot(), {\n        contentType: 'image/png'\n      });\n      throw error;\n    } finally {\n      await allure.step('Close browser', async () => {\n        await context.close();\n      });\n    }\n  });\n});"
+        }
+      ],
+      "timestamp": "2025-07-27T09-29-31-445Z",
+      "testType": "ui",
+      "tags": [
+        "smoke",
+        "ui",
+        "search"
+      ],
+      "fileName": "bing-search-tests-0c1663e6-6541-4406-bf38-6c9958a4aaee.spec.js"
+    },
+    {
+      "testId": "c0964765-302a-4e64-9cd2-1f7ed3ffd459",
+      "promptId": "b05fec04-dab6-4490-96a8-c8d5a086e2d4",
+      "testName": "microsoft-search-tests",
+      "files": [
+        {
+          "type": "playwright-ui",
+          "name": "microsoft-search-tests-c0964765-302a-4e64-9cd2-1f7ed3ffd459.spec.js",
+          "path": "/Users/rajbansal/Desktop/hustle/auto-test/backend/src/tests/playwright/microsoft-search-tests-c0964765-302a-4e64-9cd2-1f7ed3ffd459.spec.js",
+          "content": "// Tags: smoke, regression, search\n// Tags: smoke, regression, search\nconst { test, expect } = require('@playwright/test');\nconst { allure } = require('allure-playwright');\nconst { SelfHealingLocators } = require('../support/selfHealingLocators');\nconst { AntiDetection } = require('../support/antiDetection');\ntest.describe('Microsoft Search Tests', () => {\n  const baseUrl = process.env.BASE_URL || 'https://www.bing.com';\n  const timeout = parseInt(process.env.TIMEOUT) || 30000;\n  test('should search for Microsoft and verify title', async ({ browser }) => {\n    const context = await AntiDetection.createStealthContext(browser);\n    const page = await context.newPage();\n    const selfHealing = new SelfHealingLocators(page);\n    try {\n      await allure.step('Navigate to Bing search', async () => {\n        await AntiDetection.navigateWithDetection(page, baseUrl);\n        await page.waitForLoadState('networkidle');\n      });\n      await allure.step('Handle any cookie consent or overlays', async () => {\n        await selfHealing.handleCommonOverlays();\n        await AntiDetection.humanLikeDelay(1000, 2000);\n      });\n      await allure.step('Perform search for Microsoft', async () => {\n        const searchInput = await selfHealing.findSearchInput();\n        await AntiDetection.humanLikeFill(searchInput, 'Microsoft');\n        await page.keyboard.press('Enter');\n        await page.waitForLoadState('networkidle');\n      });\n      await allure.step('Verify page title contains Microsoft', async () => {\n        await expect(page).toHaveTitle(/Microsoft/i, { timeout });\n      });\n    } catch (error) {\n      await allure.attachment('Error Screenshot', await page.screenshot(), {\n        contentType: 'image/png'\n      });\n      throw error;\n    } finally {\n      await allure.step('Close browser', async () => {\n        await context.close();\n      });\n    }\n  });\n});"
+        }
+      ],
+      "timestamp": "2025-07-27T09-29-31-793Z",
+      "testType": "ui",
+      "tags": [
+        "smoke",
+        "regression",
+        "search"
+      ],
+      "fileName": "microsoft-search-tests-c0964765-302a-4e64-9cd2-1f7ed3ffd459.spec.js"
+    },
+    {
+      "testId": "a139fc67-eca7-404a-b13d-c98095696669",
+      "promptId": "819f83b8-9026-49c8-a816-f1f4abc9022f",
+      "testName": "search-functionality-tests",
+      "files": [
+        {
+          "type": "playwright-ui",
+          "name": "search-functionality-tests-a139fc67-eca7-404a-b13d-c98095696669.spec.js",
+          "path": "/Users/rajbansal/Desktop/hustle/auto-test/backend/src/tests/playwright/search-functionality-tests-a139fc67-eca7-404a-b13d-c98095696669.spec.js",
+          "content": "// Tags: smoke, search\n// Tags: smoke, search\nconst { test, expect } = require('@playwright/test');\nconst { allure } = require('allure-playwright');\nconst { SelfHealingLocators } = require('../support/selfHealingLocators');\nconst { AntiDetection } = require('../support/antiDetection');\ntest.describe('Search Functionality Tests', () => {\n  const baseUrl = process.env.BASE_URL || 'https://www.bing.com';\n  const timeout = parseInt(process.env.TIMEOUT) || 30000;\n  test('should search for Google and verify results', async ({ browser }) => {\n    const context = await AntiDetection.createStealthContext(browser);\n    const page = await context.newPage();\n    const selfHealing = new SelfHealingLocators(page);\n    try {\n      await allure.step('Navigate to search page', async () => {\n        await AntiDetection.navigateWithDetection(page, baseUrl);\n        await page.waitForLoadState('networkidle');\n      });\n      await allure.step('Handle any cookie consent or overlays', async () => {\n        await selfHealing.handleCommonOverlays();\n        await AntiDetection.humanLikeDelay(1000, 2000);\n      });\n      await allure.step('Perform search for Google', async () => {\n        const searchInput = await selfHealing.findSearchInput();\n        await AntiDetection.humanLikeFill(searchInput, 'google');\n        await AntiDetection.humanLikeDelay(500, 1000);\n        await page.keyboard.press('Enter');\n      });\n      await allure.step('Verify search results', async () => {\n        await page.waitForLoadState('networkidle');\n        await page.waitForSelector('title', { timeout });\n        const pageTitle = await page.title();\n        expect(pageTitle.toLowerCase()).toContain('google');\n        expect(pageTitle.toLowerCase()).toContain('search results');\n      });\n    } catch (error) {\n      await allure.attachment('Error Screenshot', await page.screenshot(), {\n        contentType: 'image/png'\n      });\n      throw error;\n    } finally {\n      await allure.step('Cleanup: Close browser', async () => {\n        await context.close();\n      });\n    }\n  });\n});"
+        }
+      ],
+      "timestamp": "2025-07-27T09-51-00-632Z",
+      "testType": "ui",
+      "tags": [
+        "smoke",
+        "search"
+      ],
+      "fileName": "search-functionality-tests-a139fc67-eca7-404a-b13d-c98095696669.spec.js"
+    }
+  ],
+  "lastUpdated": "2025-07-27T09:51:00.635Z"
+}

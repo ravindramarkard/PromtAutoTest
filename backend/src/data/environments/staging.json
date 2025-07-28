@@ -1,0 +1,12 @@
+{
+  "name": "Staging",
+  "key": "staging",
+  "variables": {
+    "BASE_URL": "https://staging.example.com",
+    "API_URL": "https://staging-api.example.com",
+    "USERNAME": "staging_user",
+    "PASSWORD": "staging_pass123",
+    "TIMEOUT": "60000",
+    "BROWSER": "chromium"
+  }
+}

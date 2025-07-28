@@ -1,0 +1,19 @@
+{
+  "id": "f0a03719-ac1c-4525-8548-79ba3ea3bf89",
+  "name": "Collection 2 with AI env",
+  "description": "Collection 2 with AI env",
+  "testSuites": [
+    "d8ba5fb0-ec7a-4bbb-936c-01ec4eb9ac25",
+    "c6918321-8671-49ac-bf12-ac80f717d325"
+  ],
+  "environment": "ai_env",
+  "settings": {
+    "headless": true,
+    "browser": "chromium",
+    "parallel": false,
+    "retries": 0,
+    "timeout": 60000
+  },
+  "createdAt": "2025-07-27T12:20:09.971Z",
+  "updatedAt": "2025-07-27T12:20:09.971Z"
+}

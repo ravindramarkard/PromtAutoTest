@@ -1,0 +1,19 @@
+{
+  "id": "ca9e94b0-8e7c-4f14-92f0-256d59fec640",
+  "name": "Collection 1",
+  "description": "Collection of Google and Microsoft",
+  "testSuites": [
+    "d8ba5fb0-ec7a-4bbb-936c-01ec4eb9ac25",
+    "c6918321-8671-49ac-bf12-ac80f717d325"
+  ],
+  "environment": "dev",
+  "settings": {
+    "headless": true,
+    "browser": "chromium",
+    "parallel": false,
+    "retries": 0,
+    "timeout": 60000
+  },
+  "createdAt": "2025-07-27T12:11:49.658Z",
+  "updatedAt": "2025-07-27T12:11:49.658Z"
+}

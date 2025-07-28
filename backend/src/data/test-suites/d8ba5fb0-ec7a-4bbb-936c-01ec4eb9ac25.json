@@ -1,0 +1,20 @@
+{
+  "id": "d8ba5fb0-ec7a-4bbb-936c-01ec4eb9ac25",
+  "name": "Google Suite",
+  "description": "Test Google related test cases",
+  "environment": "dev",
+  "testCases": [
+    "a139fc67-eca7-404a-b13d-c98095696669",
+    "c0964765-302a-4e64-9cd2-1f7ed3ffd459"
+  ],
+  "tags": [],
+  "settings": {
+    "headless": true,
+    "browser": "chromium",
+    "parallel": false,
+    "retries": 0,
+    "timeout": 30000
+  },
+  "createdAt": "2025-07-27T08:55:01.581Z",
+  "updatedAt": "2025-07-27T10:05:05.499Z"
+}

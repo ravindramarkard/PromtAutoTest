@@ -1,0 +1,12 @@
+{
+  "name": "Production",
+  "key": "prod",
+  "variables": {
+    "BASE_URL": "https://app.example.com",
+    "API_URL": "https://api.example.com",
+    "USERNAME": "prod_user",
+    "PASSWORD": "prod_pass123",
+    "TIMEOUT": "90000",
+    "BROWSER": "chromium"
+  }
+}

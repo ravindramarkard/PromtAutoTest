@@ -1,0 +1,19 @@
+{
+  "id": "c6918321-8671-49ac-bf12-ac80f717d325",
+  "name": "Microsoft",
+  "description": "Test Microsoft related test cases",
+  "environment": "dev",
+  "testCases": [
+    "c0964765-302a-4e64-9cd2-1f7ed3ffd459"
+  ],
+  "tags": [],
+  "settings": {
+    "headless": true,
+    "browser": "chromium",
+    "parallel": false,
+    "retries": 0,
+    "timeout": 30000
+  },
+  "createdAt": "2025-07-27T08:54:40.665Z",
+  "updatedAt": "2025-07-27T09:42:41.494Z"
+}

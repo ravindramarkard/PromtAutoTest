@@ -1,0 +1,30 @@
+{
+  "id": "ai_env",
+  "name": "AI environment",
+  "key": "ai_env",
+  "variables": {
+    "BASE_URL": "https://search.yahoo.com/",
+    "API_URL": "",
+    "USERNAME": "",
+    "PASSWORD": "",
+    "TIMEOUT": "30000",
+    "BROWSER": "chromium"
+  },
+  "createdAt": "2025-07-27T09:11:24.467Z",
+  "updatedAt": "2025-07-27T14:28:37.904Z",
+  "jira": {
+    "enabled": false,
+    "serverUrl": "test",
+    "username": "",
+    "apiToken": "",
+    "projectKey": "",
+    "issueType": "Bug",
+    "assignee": "",
+    "priority": "Medium",
+    "labels": [
+      "automation"
+    ]
+  },
+  "isEditing": true,
+  "originalKey": "ai_env"
+}

@@ -1,0 +1,50 @@
+{
+  "name": "auto-test-playwright-llm",
+  "version": "1.0.0",
+  "description": "Automated Playwright test generation using LLM prompts with BDD format and Allure reporting",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/src/server.js",
+    "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
+    "backend:dev": "node backend/src/server.js",
+    "frontend:dev": "cd frontend && npm start",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "clean:allure": "rm -rf backend/src/tests/allure-report && rm -rf backend/src/tests/allure-results",
+    "allure:generate": "npx allure generate backend/src/tests/allure-results --clean -o allure-report",
+    "allure:open": "npx allure open allure-report",
+    "allure:serve": "npx allure serve backend/src/tests/allure-results",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "generate:tests": "node backend/src/scripts/generateTests.js"
+  },
+  "keywords": [
+    "playwright",
+    "testing",
+    "automation",
+    "llm",
+    "bdd",
+    "allure"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@cucumber/cucumber": "^10.0.0",
+    "allure-playwright": "^2.9.0",
+    "allure-commandline": "^2.24.0",
+    "concurrently": "^8.2.0",
+    "nodemon": "^3.0.0"
+  },
+  "dependencies": {
+    "openai": "^4.0.0",
+    "@anthropic-ai/sdk": "^0.9.0",
+    "axios": "^1.6.0",
+    "express": "^4.18.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.0",
+    "fs-extra": "^11.1.0",
+    "cucumber-html-reporter": "^7.1.0"
+  }
+}

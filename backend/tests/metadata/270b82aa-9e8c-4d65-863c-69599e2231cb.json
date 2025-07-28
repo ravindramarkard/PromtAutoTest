@@ -1,0 +1,21 @@
+{
+  "testId": "270b82aa-9e8c-4d65-863c-69599e2231cb",
+  "promptId": "ada02567-91d6-457a-a6b6-f13fc2daee75",
+  "testName": "generated-test",
+  "files": [
+    {
+      "type": "feature",
+      "name": "generated-test-270b82aa-9e8c-4d65-863c-69599e2231cb.feature",
+      "path": "/Users/rajbansal/Desktop/hustle/auto-test/backend/tests/features/generated-test-270b82aa-9e8c-4d65-863c-69599e2231cb.feature",
+      "content": "@generated @allure.feature:Generated_Tests\n{\n  \"clarificationNeeded\": false,\n  \"testType\": \"ui\",\n  \"testName\": \"Google Search Functionality\",\n  \"tags\": [\"@smoke\", \"@search\", \"@regression\"],\n  \"featureFile\": `\nFeature: Google Search Functionality\n  As a user\n  I want to search on Google\n  So that I can find information about Raj\n\n  @smoke @search\n  Scenario: Search for Raj on Google\n    Given I am on the Google homepage\n    When I enter \"Raj\" in the search box\n    And I click the search button\n    Then I should see \"Raj\" in the first search result\n    And I close the browser\n  `,\n  \"stepDefinitions\": `\n  import { test, expect } from '@playwright/test';\n  import { Given, When, Then } from '@cucumber/cucumber';\n  \n  let page;\n  \n  Given('I am on the Google homepage', async function () {\n    page = await browser.newPage();\n    await page.goto('https://google.com');\n    // Wait for the page to be fully loaded\n    await page.waitForLoadState('networkidle');\n    // Handle cookie consent if present\n    try {\n      const consentButton = await page.locator('button:has-text(\"Accept all\")');\n      if (await consentButton.isVisible()) {\n        await consentButton.click();\n      }\n    } catch (error) {\n      console.log('Cookie consent not present');\n    }\n  });\n  \n  When('I enter {string} in the search box', async function (searchTerm) {\n    await page.locator('input[name=\"q\"]').fill(searchTerm);\n  });\n  \n  When('I click the search button', async function () {\n    // Press Enter instead of clicking search button as it's more reliable\n    await page.keyboard.press('Enter');\n    // Wait for search results to load\n    await page.waitForSelector('#search');\n  });\n  \n  Then('I should see {string} in the first search result', async function (expectedText) {\n    // Wait for the first result and verify it contains the text\n    const firstResult = await page.locator('#search .g').first();\n    await expect(firstResult).toContainText(expectedText, {\n      timeout: 5000\n    });\n  });\n  \n  Then('I close the browser', async function () {\n    await page.close();\n  });\n  \n  // Add Allure reporting annotations\n  test.beforeEach(async ({ page }, testInfo) => {\n    testInfo.annotations.push({\n      type: 'test',\n      description: 'Google Search Test'\n    });\n  });\n  `\n}\n\nNote: This test implementation includes:\n1. Proper error handling for cookie consent popup\n2. Reliable selectors for Google search elements\n3. Appropriate waits for page loads and elements\n4. Allure reporting annotations\n5. Clear step definitions with async/await\n6. Page object pattern principles\n7. Timeout handling for assertions\n8. Browser cleanup\n\nYou might want to consider adding these additional scenarios:\n1. Search with special characters\n2. Search with empty string\n3. Search with very long text\n4. Verify search suggestions\n5. Test keyboard navigation\n\nWould you like me to generate any of these additional scenarios?"
+    },
+    {
+      "type": "step-definitions",
+      "name": "generated-test-270b82aa-9e8c-4d65-863c-69599e2231cb.steps.js",
+      "path": "/Users/rajbansal/Desktop/hustle/auto-test/backend/tests/step-definitions/generated-test-270b82aa-9e8c-4d65-863c-69599e2231cb.steps.js",
+      "content": "\nconst { Given, When, Then } = require('@cucumber/cucumber');\nconst { expect } = require('@playwright/test');\nconst { allure } = require('allure-playwright');\n\n"
+    }
+  ],
+  "timestamp": "2025-07-26T21-00-04-680Z",
+  "testType": "ui"
+}

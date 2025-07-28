@@ -1,0 +1,18 @@
+{
+  "id": "b05fec04-dab6-4490-96a8-c8d5a086e2d4",
+  "title": "Microsoft Prompt",
+  "description": "Microsoft Prompt",
+  "content": "search for Microsoft and press enter\nassert title to be match Microsoft\nClose the browser",
+  "testType": "ui",
+  "tags": [
+    "smoke"
+  ],
+  "additionalContext": {
+    "baseUrl": "https://www.bing.com",
+    "authRequired": false,
+    "additionalInfo": "Microsoft Prompt"
+  },
+  "createdAt": "2025-07-27T08:51:54.770Z",
+  "updatedAt": "2025-07-27T08:51:54.770Z",
+  "status": "active"
+}

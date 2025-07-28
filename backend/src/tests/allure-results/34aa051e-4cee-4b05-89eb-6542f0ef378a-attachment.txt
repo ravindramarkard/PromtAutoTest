@@ -1,0 +1,31 @@
+🎭 Selected random user agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like ...
+📱 Selected viewport: 1600x900
+🌍 Selected timezone: America/New_York
+🕵️ Creating enhanced stealth context...
+🌐 Navigating to: https://search.yahoo.com/ with enhanced stealth...
+⏳ Human-like delay: 2020ms
+⏳ Human-like delay: 3432ms
+🔍 Checking for bot detection challenges...
+🔄 Attempt 1/5
+✅ No bot detection challenges found
+⏳ Human-like delay: 1868ms
+✅ Enhanced navigation completed successfully
+🔧 Checking for common overlays...
+⏳ Human-like delay: 1705ms
+🔍 Self-healing: Finding search input...
+🔧 Strategy 1/16: Trying "textarea[name="q"]"
+❌ Strategy 1 failed: locator.waitFor: Timeout 3000ms exceeded.
+🔧 Strategy 2/16: Trying "input[name="q"]"
+❌ Strategy 2 failed: locator.waitFor: Timeout 3000ms exceeded.
+🔧 Strategy 3/16: Trying "input[type="search"]"
+❌ Strategy 3 failed: locator.waitFor: Timeout 3000ms exceeded.
+🔧 Strategy 4/16: Trying "input[placeholder*="search" i]"
+✅ Success: Found search input using "input[placeholder*="search" i]"
+⌨️  Starting ultra-realistic human-like typing...
+⏳ Human-like delay: 1173ms
+⏳ Human-like delay: 390ms
+⏳ Human-like delay: 98ms
+⏳ Human-like delay: 207ms
+⏳ Human-like delay: 905ms
+✅ Completed human-like typing of "google"
+⏳ Human-like delay: 939ms

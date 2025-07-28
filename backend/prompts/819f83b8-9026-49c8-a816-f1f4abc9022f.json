@@ -1,0 +1,18 @@
+{
+  "id": "819f83b8-9026-49c8-a816-f1f4abc9022f",
+  "title": "Test 2",
+  "description": "Testing google on bing",
+  "content": "search for google and press enter\nassert title to be match google - Yahoo Search Results\nClose the browser",
+  "testType": "ui",
+  "tags": [
+    "smoke"
+  ],
+  "additionalContext": {
+    "baseUrl": "https://www.bing.com",
+    "authRequired": false,
+    "additionalInfo": ""
+  },
+  "createdAt": "2025-07-27T08:52:44.727Z",
+  "updatedAt": "2025-07-27T09:50:47.186Z",
+  "status": "active"
+}

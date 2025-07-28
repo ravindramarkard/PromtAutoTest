@@ -1,0 +1,133 @@
+{
+  "exportDate": "2024-01-01T00:00:00.000Z",
+  "totalPrompts": 6,
+  "prompts": [
+    {
+      "id": "sample-ui-login",
+      "title": "User Login Test",
+      "description": "Test user authentication flow with valid and invalid credentials",
+      "content": "Test the login functionality for a web application. User should be able to log in with valid email and password, and see appropriate error messages for invalid credentials. After successful login, user should be redirected to the dashboard page.",
+      "testType": "ui",
+      "tags": ["authentication", "login", "smoke"],
+      "additionalContext": {
+        "baseUrl": "https://example.com",
+        "selectors": {
+          "emailInput": "#email",
+          "passwordInput": "#password",
+          "loginButton": "[data-testid='login-btn']",
+          "errorMessage": ".error-message"
+        }
+      },
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "id": "sample-ui-ecommerce",
+      "title": "E-commerce Checkout Process",
+      "description": "Complete purchase flow from product selection to order confirmation",
+      "content": "Test the complete e-commerce checkout process. Add a product to cart, proceed to checkout, enter shipping and billing information, select payment method, and complete the purchase. Verify order confirmation page and email notification.",
+      "testType": "ui",
+      "tags": ["e-commerce", "checkout", "regression"],
+      "additionalContext": {
+        "testData": {
+          "productName": "Test Product",
+          "shippingAddress": "123 Test St, Test City, 12345",
+          "paymentMethod": "Credit Card"
+        }
+      },
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "id": "sample-ui-responsive",
+      "title": "Responsive Navigation Test",
+      "description": "Test navigation menu behavior across different screen sizes",
+      "content": "Test the responsive navigation menu functionality. On desktop, verify that all menu items are visible and clickable. On mobile devices, verify that the hamburger menu appears, opens/closes correctly, and all navigation links work properly.",
+      "testType": "ui",
+      "tags": ["responsive", "navigation", "mobile"],
+      "additionalContext": {
+        "breakpoints": {
+          "mobile": "375px",
+          "tablet": "768px",
+          "desktop": "1024px"
+        }
+      },
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "id": "sample-api-users",
+      "title": "User Management API CRUD",
+      "description": "Test complete CRUD operations for user management API",
+      "content": "Test the user management API endpoints. Create a new user with POST /api/users, retrieve user details with GET /api/users/{id}, update user information with PUT /api/users/{id}, and delete the user with DELETE /api/users/{id}. Verify appropriate HTTP status codes, response formats, and error handling.",
+      "testType": "api",
+      "tags": ["api", "crud", "users"],
+      "additionalContext": {
+        "baseUrl": "https://api.example.com",
+        "endpoints": {
+          "createUser": "POST /api/users",
+          "getUser": "GET /api/users/{id}",
+          "updateUser": "PUT /api/users/{id}",
+          "deleteUser": "DELETE /api/users/{id}"
+        },
+        "authRequired": true
+      },
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "id": "sample-api-auth",
+      "title": "Authentication API Test",
+      "description": "Test authentication and authorization endpoints",
+      "content": "Test the authentication API flow. Test user login with POST /api/auth/login, verify JWT token in response, test token refresh with POST /api/auth/refresh, test protected endpoint access with Authorization header, and test logout with POST /api/auth/logout. Include tests for invalid credentials and expired tokens.",
+      "testType": "api",
+      "tags": ["api", "authentication", "security"],
+      "additionalContext": {
+        "endpoints": {
+          "login": "POST /api/auth/login",
+          "refresh": "POST /api/auth/refresh",
+          "logout": "POST /api/auth/logout",
+          "profile": "GET /api/auth/profile"
+        },
+        "testCredentials": {
+          "validEmail": "test@example.com",
+          "validPassword": "password123",
+          "invalidEmail": "invalid@example.com",
+          "invalidPassword": "wrongpassword"
+        }
+      },
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "id": "sample-api-search",
+      "title": "Search API Functionality",
+      "description": "Test search and filtering capabilities",
+      "content": "Test the search API with various query parameters. Test search with keywords using GET /api/search?q=keyword, test filtering with multiple parameters like category, price range, and date filters. Test pagination with limit and offset parameters. Verify search results accuracy, empty results handling, and performance with large datasets.",
+      "testType": "api",
+      "tags": ["api", "search", "filtering"],
+      "additionalContext": {
+        "endpoints": {
+          "search": "GET /api/search",
+          "filters": "GET /api/search/filters"
+        },
+        "queryParams": {
+          "q": "search query",
+          "category": "electronics",
+          "minPrice": 100,
+          "maxPrice": 500,
+          "limit": 10,
+          "offset": 0
+        }
+      },
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z",
+      "status": "active"
+    }
+  ]
+}
