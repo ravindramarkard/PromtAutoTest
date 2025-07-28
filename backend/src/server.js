@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '/Users/ravindramarkard/Downloads/promptAutoTest/environment.env' });
+require('dotenv').config({ path: path.join(__dirname, '../environment.env') });
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
