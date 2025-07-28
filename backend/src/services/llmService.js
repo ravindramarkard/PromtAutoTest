@@ -73,17 +73,33 @@ class LLMService {
       throw new Error('OpenAI client not initialized. Check your API key.');
     }
 
-    const response = await this.openai.chat.completions.create({
-      model: 'gpt-4-turbo-preview',
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: userPrompt }
-      ],
-      temperature: 0.3,
-      max_tokens: 2000
-    });
+    const timeout = parseInt(process.env.LLM_TIMEOUT) || 30000; // 30 seconds default
+    
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeout);
 
-    return response.choices[0].message.content;
+    try {
+      const response = await this.openai.chat.completions.create({
+        model: 'gpt-4-turbo-preview',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userPrompt }
+        ],
+        temperature: 0.3,
+        max_tokens: 2000
+      }, {
+        signal: controller.signal
+      });
+
+      clearTimeout(timeoutId);
+      return response.choices[0].message.content;
+    } catch (error) {
+      clearTimeout(timeoutId);
+      if (error.name === 'AbortError') {
+        throw new Error(`OpenAI request timed out after ${timeout}ms`);
+      }
+      throw error;
+    }
   }
 
   async callClaude(systemPrompt, userPrompt) {
@@ -91,20 +107,38 @@ class LLMService {
       throw new Error('Claude client not initialized. Check your API key.');
     }
 
-    const response = await this.anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
-      max_tokens: 2000,
-      temperature: 0.3,
-      system: systemPrompt,
-      messages: [
-        { role: 'user', content: userPrompt }
-      ]
-    });
+    const timeout = parseInt(process.env.LLM_TIMEOUT) || 30000; // 30 seconds default
+    
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeout);
 
-    return response.content[0].text;
+    try {
+      const response = await this.anthropic.messages.create({
+        model: 'claude-3-5-sonnet-20241022',
+        max_tokens: 2000,
+        temperature: 0.3,
+        system: systemPrompt,
+        messages: [
+          { role: 'user', content: userPrompt }
+        ]
+      }, {
+        signal: controller.signal
+      });
+
+      clearTimeout(timeoutId);
+      return response.content[0].text;
+    } catch (error) {
+      clearTimeout(timeoutId);
+      if (error.name === 'AbortError') {
+        throw new Error(`Claude request timed out after ${timeout}ms`);
+      }
+      throw error;
+    }
   }
 
   async callLocalLLM(systemPrompt, userPrompt) {
+    const timeout = parseInt(process.env.LLM_TIMEOUT) || 30000; // 30 seconds default
+    
     try {
       const response = await axios.post(`${this.localLLMUrl}/api/generate`, {
         model: 'llama2', // Default model, can be configured
@@ -114,10 +148,15 @@ class LLMService {
           temperature: 0.3,
           top_p: 0.9
         }
+      }, {
+        timeout: timeout
       });
 
       return response.data.response;
     } catch (error) {
+      if (error.code === 'ECONNABORTED') {
+        throw new Error(`Local LLM request timed out after ${timeout}ms`);
+      }
       throw new Error(`Local LLM error: ${error.message}`);
     }
   }

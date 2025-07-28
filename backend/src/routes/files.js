@@ -26,9 +26,12 @@ router.get('/content', async (req, res) => {
     const projectRoot = path.join(__dirname, '../../../');
     const fullPath = path.join(projectRoot, filePath);
     
-    // Security check - ensure file is within project directory
-    if (!fullPath.startsWith(projectRoot)) {
-      return res.status(403).json({ error: 'Access denied' });
+    // Security check - prevent path traversal attacks
+    const normalizedPath = path.normalize(fullPath);
+    const relativePath = path.relative(projectRoot, normalizedPath);
+    
+    if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
+      return res.status(403).json({ error: 'Access denied - path traversal detected' });
     }
 
     const content = await fs.readFile(fullPath, 'utf8');
@@ -50,9 +53,12 @@ router.post('/save', async (req, res) => {
     const projectRoot = path.join(__dirname, '../../../');
     const fullPath = path.join(projectRoot, filePath);
     
-    // Security check - ensure file is within project directory
-    if (!fullPath.startsWith(projectRoot)) {
-      return res.status(403).json({ error: 'Access denied' });
+    // Security check - prevent path traversal attacks
+    const normalizedPath = path.normalize(fullPath);
+    const relativePath = path.relative(projectRoot, normalizedPath);
+    
+    if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
+      return res.status(403).json({ error: 'Access denied - path traversal detected' });
     }
 
     await fs.writeFile(fullPath, content, 'utf8');
@@ -75,9 +81,12 @@ router.post('/create', async (req, res) => {
     const parentPath = path.join(projectRoot, parent);
     const newPath = path.join(parentPath, name);
     
-    // Security check
-    if (!newPath.startsWith(projectRoot)) {
-      return res.status(403).json({ error: 'Access denied' });
+    // Security check - prevent path traversal attacks
+    const normalizedPath = path.normalize(newPath);
+    const relativePath = path.relative(projectRoot, normalizedPath);
+    
+    if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
+      return res.status(403).json({ error: 'Access denied - path traversal detected' });
     }
 
     if (type === 'directory') {
@@ -104,9 +113,12 @@ router.delete('/delete', async (req, res) => {
     const projectRoot = path.join(__dirname, '../../../');
     const fullPath = path.join(projectRoot, filePath);
     
-    // Security check
-    if (!fullPath.startsWith(projectRoot)) {
-      return res.status(403).json({ error: 'Access denied' });
+    // Security check - prevent path traversal attacks
+    const normalizedPath = path.normalize(fullPath);
+    const relativePath = path.relative(projectRoot, normalizedPath);
+    
+    if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
+      return res.status(403).json({ error: 'Access denied - path traversal detected' });
     }
 
     const stats = await fs.stat(fullPath);
